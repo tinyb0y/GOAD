@@ -1,9 +1,21 @@
 [default]
 ; Note: ansible_host *MUST* be an IPv4 address or setting things like DNS
 ; servers will break.
+;------------------------------
+; internal.lab
+;------------------------------
 dc01 ansible_host=192.168.56.10 dns_domain=dc01 dict_key=dc01
 client01 ansible_host=192.168.56.31 dns_domain=dc01 dict_key=client01
 client02 ansible_host=192.168.56.32 dns_domain=dc01 dict_key=client02
+jump05 ansible_host=192.168.56.176 dns_domain=dc01 dict_key=jump05
+jump02 ansible_host=192.168.56.178 dns_domain=dc01 dict_key=jump02
+file05 ansible_host=192.168.56.194 dns_domain=dc01 dict_key=file05
+;sql05 ansible_host=192.168.56.201 dns_domain=dc01 dict_key=sql05
+;------------------------------
+; ics.internal.lab
+;------------------------------
+dc02 ansible_host=192.168.56.11 dns_domain=dc01 dict_key=dc01
+;sql02 ansible_host=192.168.56.202 dns_domain=dc02 dict_key=sql02
 
 [all:vars]
 ; domain_name : folder inside ad/
