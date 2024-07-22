@@ -1,0 +1,53 @@
+[default]
+; Note: ansible_host *MUST* be an IPv4 address or setting things like DNS
+; servers will break.
+;------------------------------
+; internal.lab
+;------------------------------
+dc01 ansible_host=192.168.56.10 dns_domain=dc01 dict_key=dc01
+client01 ansible_host=192.168.56.31 dns_domain=dc01 dict_key=client01
+client02 ansible_host=192.168.56.32 dns_domain=dc01 dict_key=client02
+jump05 ansible_host=192.168.56.176 dns_domain=dc01 dict_key=jump05
+jump02 ansible_host=192.168.56.178 dns_domain=dc01 dict_key=jump02
+file05 ansible_host=192.168.56.194 dns_domain=dc01 dict_key=file05
+sql05 ansible_host=192.168.56.201 dns_domain=dc01 dict_key=sql05
+;------------------------------
+; ics.internal.lab
+;------------------------------
+dc02 ansible_host=192.168.56.11 dns_domain=dc01 dict_key=dc01
+sql02 ansible_host=192.168.56.202 dns_domain=dc02 dict_key=sql02
+
+[all:vars]
+; domain_name : folder inside ad/
+domain_name=INTERNAL
+
+;use to setup a dns server in the start of provisioning
+force_dns_server=no
+dns_server=x.x.x.x
+; set to no if you use only one network adapter
+two_adapters=yes
+; adapter created by vagrant and virtualbox 
+nat_adapter=Ethernet
+domain_adapter=Ethernet 2
+
+
+; winrm connection (windows)
+ansible_user=vagrant
+ansible_password=vagrant
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_operation_timeout_sec=400
+ansible_winrm_read_timeout_sec=500
+
+; proxy settings (the lab need internet for some install, if you are behind a proxy you should set the proxy here)
+enable_http_proxy=no
+ad_http_proxy=http://x.x.x.x:xxxx
+ad_https_proxy=http://x.x.x.x:xxxx
+
+;[elk_server:vars]
+;; ssh connection (linux)
+;ansible_ssh_user=vagrant
+;ansible_ssh_private_key_file=./.vagrant/machines/elk/virtualbox/private_key
+;ansible_ssh_port=22
+;host_key_checking=false
+

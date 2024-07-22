@@ -5,7 +5,7 @@
             "hostname" : "dctemplate",
             "type" : "dc",
             "local_admin_password": "dc_and_domain_password",
-            "domain" : "template.lab",
+            "domain" : "internal.lab",
             "path" : "DC=template,DC=lab",
             "local_groups" : {
                 "Administrators" : [
@@ -27,7 +27,7 @@
             "hostname" : "srvtemplate",
             "type" : "server",
             "local_admin_password": "srv_password",
-            "domain" : "template.lab",
+            "domain" : "internal.lab",
             "path" : "DC=template,DC=lab",
             "use_laps": true,
             "local_groups" : {
@@ -43,7 +43,7 @@
         }
     },
     "domains" : {
-        "template.lab" : {
+        "internal.lab" : {
             "dc": "dc01",
             "domain_password" : "dc_and_domain_password",
             "netbios_name": "TEMPLATE",

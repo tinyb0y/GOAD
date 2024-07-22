@@ -1,0 +1,282 @@
+{
+"lab" : {
+    "hosts" : {
+        "dc01" : {
+            "hostname" : "dc01",
+            "type" : "dc",
+            "local_admin_password": "wa_i3risihowrorOMUg1",
+            "domain" : "internal.lab",
+            "path" : "DC=internal,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins"
+                ]
+            },
+            "scripts" : ["features.ps1"],
+            "vulns" : ["files"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "flag.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        },
+        "client01" : {
+            "hostname" : "client01",
+            "type" : "server",
+            "local_admin_password": "FAqzNKm^EcTyd7Bp",
+            "domain" : "internal.lab",
+            "path" : "DC=internal,DC=lab",            
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins",
+                    "internal\\monitor"
+                ],
+                "Remote Desktop Users" : [
+                    "internal\\monitor"
+                ]
+            },
+            "vulns" : ["files"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "client01.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        },
+        "client02" : {
+            "hostname" : "client02",
+            "type" : "server",
+            "local_admin_password": "C1WRI!idrLpRa_h68o5_",
+            "domain" : "internal.lab",
+            "path" : "DC=internal,DC=lab",            
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins",
+                    "internal\\monitor"
+                ],
+                "Remote Desktop Users" : [
+                    "internal\\monitor"
+                ]
+            },
+            "vulns" : ["files"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "client02.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        },
+        "jump02" : {
+            "hostname" : "jump02",
+            "type" : "server",
+            "local_admin_password": "WipH$b&utrisIPutlmE0",
+            "domain" : "internal.lab",
+            "path" : "DC=internal,DC=lab",            
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins",
+                    "internal\\srvadmins"
+                ],
+                "Remote Desktop Users" : [
+                    "internal\\srvadmins"
+                ]
+            },
+            "vulns" : ["files"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "jump02.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        },
+        "jump05" : {
+            "hostname" : "jump05",
+            "type" : "server",
+            "local_admin_password": "8wu=U8ogicr2dristlzi",
+            "domain" : "internal.lab",
+            "path" : "DC=internal,DC=lab",
+            "use_laps": true,            
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins",
+                    "internal\\srvadmins"
+                ],
+                "Remote Desktop Users" : [
+                    "internal\\srvadmins"
+                ]
+            },
+            "vulns" : ["files"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "jump05.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        },
+        "file05" : {
+            "hostname" : "file05",
+            "type" : "server",
+            "local_admin_password": "8wu=U8ogicr2dristlzi",
+            "domain" : "internal.lab",
+            "path" : "DC=internal,DC=lab",            
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins",
+                    "internal\\srvadmins"
+                ],
+                "Remote Desktop Users" : [
+                    "internal\\srvadmins"
+                ]
+            },
+            "vulns" : ["files", "openshares"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "file05.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        },
+        "dc02" : {
+            "hostname" : "dc02",
+            "type" : "dc",
+            "local_admin_password": "NgtI75cKV+Pu",
+            "domain" : "ics.internal.lab",
+            "path" : "DC=ics,DC=internal,DC=lab",            
+            "local_groups" : {
+                "Administrators" : [
+                    "internal\\dcadmins",
+                    "internal\\srvadmins"
+                ],
+                "Remote Desktop Users" : [
+                    "internal\\srvadmins"
+                ]
+            },
+            "vulns" : ["files", "openshares"],
+            "vulns_vars" : {
+                "files" : {
+                    "rdp" : {
+                        "src" : "dc02.txt",
+                        "dest" : "c:\\users\\administrator\\desktop\\flag.txt"
+                    }
+                }
+            }
+        }
+
+
+    },
+    "domains" : {
+        "internal.lab" : {
+            "dc": "dc01",
+            "domain_password" : "6Ho@re6aT6GlThupRa9a",
+            "netbios_name": "INTERNAL",
+            "laps_path": "OU=Laps,DC=internal,DC=lab",
+            "laps_readers": [
+                "peter"
+            ],
+            "groups" : {
+                "global" : {
+                    "dcadmins" : {
+                        "managed_by" : "alice",
+                        "path" : "CN=Users,DC=internal,DC=lab"
+                    },
+                    "srvadmins" : {
+                        "managed_by" : "Administrator",
+                        "path" : "CN=Users,DC=internal,DC=lab"
+                    },
+                    "monitor": {
+                        "managed_by" : "Administrator",
+                        "path" : "CN=Users,DC=internal,DC=lab"
+                    },
+                    "lapsreader": {
+                        "managed_by" : "Administrator",
+                        "path" : "CN=Users,DC=internal,DC=lab"
+                    }
+                }
+            },
+            "users" : {
+                "alice" : {
+                    "firstname"   : "alice", 
+                    "surname": "",
+                    "password"    : "aupaysdesmerveilles", 
+                    "description" : "",
+                    "groups"      : ["dcadmins","srvadmins"],
+                    "path"        : "CN=Users,DC=internal,DC=lab"
+                },
+                "bob" : {
+                    "firstname"   : "bob", 
+                    "surname": "",
+                    "password"    : "lebricoleur",
+                    "description" : "",
+                    "groups"      : ["srvadmins"],
+                    "path"        : "CN=Users,DC=internal,DC=lab"
+                },
+                "wrkmonitor" : {
+                    "firstname"   : "wrkmonitor", 
+                    "surname": "",
+                    "password"    : "prLw=0Dlf@eTrl6@i397",
+                    "description" : "",
+                    "groups"      : ["monitor"],
+                    "path"        : "CN=Users,DC=internal,DC=lab"
+                },
+                "peter" : {
+                    "firstname"   : "peter", 
+                    "surname": "",
+                    "password"    : "prLw=0Dlf@eTrl6@iee397",
+                    "description" : "",
+                    "groups"      : ["lapsreader"],
+                    "path"        : "CN=Users,DC=internal,DC=lab"
+                }
+            }
+        },
+        "ics.internal.lab" : {
+            "dc": "dc02",
+            "domain_password" : "frapH*st80os?u6a@raY",
+            "netbios_name": "ICS",
+            "laps_path": "OU=Laps,DC=ics,DC=internal,DC=lab",
+            "groups" : {
+                "global" : {
+                    "dcadmins" : {
+                        "managed_by" : "alice",
+                        "path" : "CN=Users,DC=ics,DC=internal,DC=lab"
+                    },
+                    "Stark" : {
+                        "managed_by" : "eddard.stark",
+                        "path" : "CN=Users,DC=ics,DC=internal,DC=lab"
+                    }
+                }
+            },
+            "users" : {
+                "eddard.stark" : {
+                    "firstname"   : "Eddard",
+                    "surname"     : "Stark",
+                    "password"    : "FightP3aceAndHonor!",                    
+                    "description" : "Eddard Stark",
+                    "groups"      : ["Stark", "Domain Admins"],
+                    "path"        : "CN=Users,DC=ics,DC=internal,DC=lab"
+                },
+                "sansa.stark" : {
+                    "firstname"   : "Sansa",
+                    "surname"     : "Stark",
+                    "password"    : "=_)(*&^%$#@!qazaq",                    
+                    "description" : "Sansa Stark",
+                    "groups"      : ["Stark"],
+                    "path"        : "CN=Users,DC=ics,DC=internal,DC=lab"
+                }
+            }
+        }
+    }
+}
+}
